@@ -1,0 +1,102 @@
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <img src="../assets/Logo.png" alt="Logo" width="50" />
+    <a class="navbar-brand fw-bold text-uppercase mx-2" routerLink="/"
+      >Star Hotel</a
+    >
+
+    <div class="collapse navbar-collapse mx-4" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <div *ngIf="rolName === 'Administrador'">
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle item-link"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              >Mantenimientos</a
+            >
+            <ul class="dropdown-menu">
+              <li>
+                <a class="dropdown-item item-link" routerLink="/rooms"
+                  >Habitaciones</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item item-link" routerLink="/reservaciones"
+                  >Reservas</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item item-link" routerLink="/huespedes"
+                  >Huespedes</a
+                >
+              </li>
+              <li>
+                <a
+                  class="dropdown-item item-link"
+                  routerLink="/tiposHabitaciones"
+                  >Tipos Habitacion</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item item-link" routerLink="/servicios"
+                  >Servicios</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item item-link" routerLink="/users"
+                  >Usuarios</a
+                >
+              </li>
+            </ul>
+          </li>
+        </div>
+
+        <div *ngIf="rolName !== 'Administrador'" class="d-flex">
+          <li class="nav-item">
+            <a class="nav-link item-link" routerLink="/about">Nosotros</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link item-link" routerLink="/contact">Contacto</a>
+          </li>
+        </div>
+      </ul>
+    </div>
+
+    <div
+      class="navbarRight"
+      style="display: flex; align-items: center; gap: 32px"
+    >
+      <div
+        class="menuRight"
+        style="display: flex; gap: 24px; align-items: center"
+      >
+        <div *ngIf="!isLoggedIn">
+          <p
+            class="btn btn-primary"
+            style="margin-bottom: 0"
+            routerLink="/login"
+          >
+            Iniciar Sesión
+          </p>
+        </div>
+      </div>
+
+      <div *ngIf="isLoggedIn">
+        <p style="margin-bottom: 0">
+          <span *ngIf="rolName === 'Administrador'; else userGreeting">
+            Administrador:
+            <span class="text-uppercase fw-bold">{{ usuarioName }}</span>
+          </span>
+          <ng-template #userGreeting>
+            Bienvenido:
+            <span class="text-uppercase fw-bold">{{ usuarioName }}</span>
+          </ng-template>
+          <button class="btn btn-danger mx-2" (click)="logout()">Salir</button>
+        </p>
+      </div>
+    </div>
+  </div>
+</nav>

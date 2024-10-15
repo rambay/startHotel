@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reporte de Usuarios</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        h3 {
+            margin-top: 20px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+        .icon {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th,td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;;
+        }
+        .footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+<h1>Reporte de Usuarios</h1>
+<br>
+<h3><i class="fa fa-briefcase icon"></i>&nbsp; Listado de Usuarios</h3>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+		<th>Apellidos</th>
+        <th>Correo</th>
+        <th>Telefono</th>
+        <th>Direccion</th>
+        
+    </tr>
+    <tr th:each="usuario : ${usuarios}">
+        <td th:text="${usuario.getId()}"></td>
+        <td th:text="${usuario.getNombre()}"></td>
+		<td th:text="${usuario.getApellido()}"></td>
+        <td th:text="${usuario.getEmail()}"></td>
+        <td th:text="${usuario.getTelefono()}"></td>
+        <td th:text="${usuario.getDireccion()}"></td>
+        
+    </tr>
+</table>
+		<div class="footer">
+           &copy; 2024 - Todos los derechos reservados
+       </div>
+</body>
+</html>

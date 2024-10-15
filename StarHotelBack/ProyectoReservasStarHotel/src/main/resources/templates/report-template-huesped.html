@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reporte de Huespedes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<style>
+	        body {
+	            font-family: Arial, sans-serif;
+	        }
+	        h1 {
+	            text-align: center;
+	            margin-bottom: 20px;
+	        }
+	        h3 {
+	            margin-top: 20px;
+	            border-bottom: 1px solid #ddd;
+	            padding-bottom: 5px;
+	            display: flex;
+	            align-items: center;
+	        }
+	        .icon {
+	            margin-right: 10px;
+	            font-size: 1.2rem;
+	        }
+	        table {
+	            width: 100%;
+	            border-collapse: collapse;
+	            margin-top: 10px;
+	        }
+	        th,td {
+	            border: 1px solid #ddd;
+	            padding: 8px;
+	            text-align: left;
+	        }
+	        th {
+	            background-color: #f2f2f2;;
+	        }
+	        .footer {
+	            position: absolute;
+	            bottom: 0;
+	            width: 100%;
+	            text-align: center;
+	            padding: 10px;
+	            background-color: #f2f2f2;
+	        }
+	    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Reporte de Huespedes</h1>
+        <h3><i class="fa fa-briefcase icon"></i>&nbsp; Listado de Huespedes</h3>
+        <div class="table-responsive">
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Correo</th>
+                    <th>Usuario</th>
+                    <th>Teléfono</th>
+                    <th>Dirección</th>
+                </tr>
+                <tr th:each="huesped : ${huespedes}">
+                    <td th:text="${huesped.getIdHuesped()}"></td>
+                    <td th:text="${huesped.getNombre()}"></td>
+                    <td th:text="${huesped.getApellido()}"></td>
+                    <td th:text="${huesped.getEmail()}"></td>
+                    <td th:text="${huesped.getNombreuser()}"></td>
+                    <td th:text="${huesped.getTelefono()}"></td>
+                    <td th:text="${huesped.getDireccion()}"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="footer">
+            &copy; 2024 - Todos los derechos reservados
+        </div>
+    </div>
+</body>
+</html>

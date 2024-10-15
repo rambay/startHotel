@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reporte de Habitación</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        h3 {
+            margin-top: 20px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+        .icon {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th,td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;;
+        }
+        .footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+<h1>Reporte de Habitación</h1>
+<br>
+<h3><i class="fa fa-briefcase icon"></i>&nbsp; Listado de Habitación</h3>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Número Habitación</th>
+		<th>Tipo Habitación</th>
+        <th>Precio</th>
+        <th>Estado</th>
+        <th>Descripcion</th>
+        
+    </tr>
+    <tr th:each="habitacion : ${habitaciones}">
+        <td th:text="${habitacion.getIdHabitacion()}"></td>
+        <td th:text="${habitacion.getNumeroHabitacion()}"></td>
+		<td th:text="${habitacion.getTipo().getDescripcion()}"></td>
+        <td th:text="${habitacion.getPrecioPorNoche()}"></td>
+        <td th:text="${habitacion.getEstado()}"></td>
+        <td th:text="${habitacion.getDescripcion()}"></td>
+        
+    </tr>
+</table>
+		<div class="footer">
+           &copy; 2024 - Todos los derechos reservados
+       </div>
+</body>
+</html>

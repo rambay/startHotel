@@ -1,0 +1,13 @@
+.btnSignUp {
+  text-decoration: underline;
+  color: #9a9a9a;
+  cursor: pointer;
+  text-align: center;
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.btnSignUp:hover {
+  color: #000000;
+}

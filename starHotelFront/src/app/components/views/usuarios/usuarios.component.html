@@ -1,0 +1,193 @@
+<div class="container">
+  <div class="row mb-3">
+    <div class="col text-end">
+      <button
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#modalProducto"
+        (click)="titulo('Crear', null)"
+      >
+        Agregar Nuevo Usuario
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Apellidos</th>
+          <th>Direccion</th>
+          <th>Contrasena</th>
+          <th>Estado</th>
+          <th>Rol</th>
+          <th>Telefono</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let usuario of listarUsuarios">
+          <td>{{ usuario.nombre }}</td>
+          <td>{{ usuario.apellido }}</td>
+          <td>{{ usuario.direccion }}</td>
+          <td>{{ usuario.contrasena }}</td>
+          <td>{{ usuario.estado }}</td>
+          <td>{{ usuario.rol.nombre }}</td>
+          <td>{{ usuario.telefono }}</td>
+          <td>{{ usuario.email }}</td>
+          <td style="display: flex; gap: 8px; justify-content: center">
+            <button
+              class="btn btn-warning"
+              data-bs-toggle="modal"
+              data-bs-target="#modalProducto"
+              (click)="titulo('Editar', usuario.id)"
+            >
+              Editar
+            </button>
+            <button
+              class="btn btn-danger"
+              (click)="eliminarHabitaciones(usuario.id)"
+            >
+              Eliminar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <form [formGroup]="formUsuarios">
+    <div class="modal fade" id="modalProducto">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">{{ title }}</h5>
+            <button
+              type="button"
+              class="btn-close"
+              (click)="cerrarBoton()"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-6">
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Nombre"
+                    formControlName="nombre"
+                    required
+                  />
+                  <label for="Nombre">Nombre</label>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-floating">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Apellidos"
+                    formControlName="apellido"
+                  />
+                  <label for="Apellidos">Apellidos</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-6 mb-3 mt-3">
+                <div class="form-floating">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Direccion"
+                    formControlName="direccion"
+                  />
+                  <label for="Direccion">Direccion</label>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-floating mt-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Contrasena"
+                    formControlName="contrasena"
+                  />
+                  <label for="Contrasena">Contrasena</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-6">
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Estado"
+                    formControlName="estado"
+                  />
+                  <label for="Estado">Estado</label>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-floating" formGroupName="rol">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Rol Usuario"
+                    formControlName="idRol"
+                  />
+                  <label for="Rol">Rol Usuario</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-6">
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Telefono"
+                    formControlName="telefono"
+                  />
+                  <label for="Telefono">Telefono</label>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-floating">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Email"
+                    formControlName="email"
+                  />
+                  <label for="Email">Email</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              (click)="cerrarBoton()"
+            >
+              Cerrar
+            </button>
+            <button
+              type="submit"
+              class="btn btn-primary"
+              (click)="crearEditarUsuarios(nameBoton)"
+            >
+              {{ nameBoton }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

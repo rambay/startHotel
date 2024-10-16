@@ -10,7 +10,6 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 import com.itextpdf.html2pdf.ConverterProperties;
 import com.itextpdf.html2pdf.HtmlConverter;
 import com.springboot.app.model.Habitacion;
-import com.springboot.app.model.TipoHabitacion;
 import com.springboot.app.repository.HabitacionRepository;
 import com.springboot.app.repository.TipoHabitacionRepository;
 import com.springboot.app.service.HabitacionService;
@@ -92,6 +91,8 @@ public class HabitacionServiceImplement implements HabitacionService {
         if (habitacionExiste.isPresent()) {
             Habitacion habitacion = habitacionExiste.get();
             habitacion.setNumeroHabitacion(hab.getNumeroHabitacion());
+            habitacion.setCapacidad(hab.getCapacidad());
+            habitacion.setImageHabitacion(hab.getImageHabitacion());
             habitacion.setTipo(hab.getTipo());
             habitacion.setPrecioPorNoche(hab.getPrecioPorNoche());
             habitacion.setEstado(hab.getEstado());
@@ -131,31 +132,17 @@ public class HabitacionServiceImplement implements HabitacionService {
     }
 
 	@Override
-	public ResponseEntity<Map<String, Object>> filtrarHabitacionesPorTipoYFechas(Long idTipoHabitacion, Date fechaIni,
-			Date fechaFin) {
-		try {
-            Optional<TipoHabitacion> tipoHabitacionOpt = tipoHabitacionRepository.findById(idTipoHabitacion);
-            if (!tipoHabitacionOpt.isPresent()) {
-                Map<String, Object> errorResponse = new HashMap<>();
-                errorResponse.put("mensaje", "Tipo de habitación no encontrado");
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
-            }
-            
-            TipoHabitacion tipoHabitacion = tipoHabitacionOpt.get();
-            
-            List<Habitacion> habitaciones = dao.findByTipoAndReservacionesFechaIniBeforeAndReservacionesFechaFinAfter(
-                tipoHabitacion, fechaFin, fechaIni
-            );
-            
-            Map<String, Object> response = new HashMap<>();
-            response.put("habitaciones", habitaciones);
+	public ResponseEntity<Map<String, Object>> filtrarHabitacionesPorFechasYCapacidad(int capacidad, Date fecInicio, Date fecFin) {
+        Map<String, Object> response = new HashMap<>();
+        List<Habitacion> habitaciones = dao.obtenerHabitacionesPorFechas(capacidad, fecInicio, fecFin);
+
+        if (habitaciones.isEmpty()) {
+            response.put("mensaje", "No hay habitaciones disponibles para las fechas y capacidad seleccionadas.");
             return ResponseEntity.ok(response);
-        } catch (Exception e) {
-            Map<String, Object> errorResponse = new HashMap<>();
-            errorResponse.put("mensaje", "Error al filtrar habitaciones");
-            errorResponse.put("error", e.getMessage());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
         }
+
+        response.put("habitaciones", habitaciones);
+        return ResponseEntity.ok(response);
 	}
 
 	@Override

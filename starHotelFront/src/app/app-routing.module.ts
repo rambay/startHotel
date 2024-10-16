@@ -8,6 +8,9 @@ import { RegisterComponent } from './components/views/register/register.componen
 import { AboutComponent } from './components/views/about/about.component';
 import { ContactComponent } from './components/views/contact/contact.component';
 import { UsuariosComponent } from './components/views/usuarios/usuarios.component';
+import { TipohabitacionComponent } from './components/views/tipohabitacion/tipohabitacion.component';
+import { ListroomsfilterComponent } from './components/views/listroomsfilter/listroomsfilter.component';
+import { NotfoundComponent } from './components/views/notfound/notfound.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -16,7 +19,10 @@ const routes: Routes = [
   { path: 'rooms', component: HabitacionesComponent, canActivate: [AuthGuard] },
   { path: 'users', component: UsuariosComponent, canActivate: [AuthGuard] },
   { path: 'about', component: AboutComponent },
+  { path: 'rooms/filter', component: ListroomsfilterComponent },
+  { path: 'rooms/type', component: TipohabitacionComponent },
   { path: 'contact', component: ContactComponent },
+  { path: '**', component: NotfoundComponent },
 ];
 
 @NgModule({

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import com.springboot.app.model.Habitacion;
 import com.springboot.app.service.HabitacionService;
 
+
 import java.util.Date;
 import java.util.Map;
 
@@ -43,14 +44,13 @@ public class HabitacionController {
     public ResponseEntity<Map<String, Object>> eliminar(@PathVariable Long id) {
         return service.eliminarHabitacion(id);
     }
-    
-    @GetMapping("/filtrar")
-    public ResponseEntity<Map<String, Object>> filtrarHabitaciones(
-        @RequestParam Long idTipoHabitacion,
-        @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaIni,
-        @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaFin) {
-        
-        return service.filtrarHabitacionesPorTipoYFechas(idTipoHabitacion, fechaIni, fechaFin);
+
+    @GetMapping("/filtrar/{capacidad}/{fechaInicio}/{fechaFin}")
+    public ResponseEntity<Map<String, Object>> filtrarHabitaciones(@PathVariable("capacidad") int capacidad,
+                                                                   @PathVariable("fechaInicio") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fechaInicio,
+                                                                   @PathVariable("fechaFin") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fechaFin) {
+
+        return service.filtrarHabitacionesPorFechasYCapacidad(capacidad, fechaInicio, fechaFin);
     }
     
     @GetMapping("/reporte")

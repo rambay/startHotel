@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="row">
+    <!-- Tarjeta de habitación -->
+    <div *ngFor="let habitacion of habitaciones" class="col-md-4 mb-4">
+      <div class="card shadow">
+        <div class="card-header" style="height: 210px; overflow: hidden">
+          <img
+            src="{{ habitacion.imageHabitacion }}"
+            alt="{{ habitacion.descripcion }}"
+            class="img-fluid"
+            style="object-fit: cover; height: 100%; width: 100%"
+          />
+        </div>
+        <div class="card-body">
+          <h1 style="margin: 0; margin-top: -12px">
+            <strong
+              style="text-transform: uppercase; font-size: 18px; color: #a3a3a3"
+              >Habitación</strong
+            >
+            <p
+              style="
+                text-transform: uppercase;
+                margin-top: -8px;
+                font-weight: bold;
+              "
+            >
+              {{ habitacion.tipo.descripcion }}
+            </p>
+          </h1>
+          <p style="font-size: 14px">{{ habitacion.descripcion }}</p>
+          <p style="margin: 6px 0">
+            <strong>Numero de Habitación:</strong>
+            {{ habitacion.numeroHabitacion }}
+          </p>
+          <p style="margin: 6px 0">
+            <strong style="margin-right: 4px">Estado:</strong>
+            <span class="badge bg-success">{{ habitacion.estado }}</span>
+          </p>
+          <p>
+            <strong>Precio:</strong> S/.
+            <strong style="font-size: 24px">{{
+              habitacion.precioPorNoche
+            }}</strong>
+          </p>
+          <button class="btn btn-primary w-100">Reservar</button>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="habitaciones.length === 0" class="col-12">
+      <div class="alert alert-warning text-center">
+        No se encontraron habitaciones.
+      </div>
+    </div>
+  </div>
+</div>

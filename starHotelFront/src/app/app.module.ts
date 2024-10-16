@@ -15,9 +15,26 @@ import { RegisterComponent } from './components/views/register/register.componen
 import { AboutComponent } from './components/views/about/about.component';
 import { ContactComponent } from './components/views/contact/contact.component';
 import { UsuariosComponent } from './components/views/usuarios/usuarios.component';
+import { TipohabitacionComponent } from './components/views/tipohabitacion/tipohabitacion.component';
+import { ListroomsfilterComponent } from './components/views/listroomsfilter/listroomsfilter.component';
+import { NotfoundComponent } from './components/views/notfound/notfound.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, HabitacionesComponent, NavbarComponent, SearchRoomComponent, HomeComponent, RegisterComponent, AboutComponent, ContactComponent, UsuariosComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    HabitacionesComponent,
+    NavbarComponent,
+    SearchRoomComponent,
+    HomeComponent,
+    RegisterComponent,
+    AboutComponent,
+    ContactComponent,
+    UsuariosComponent,
+    TipohabitacionComponent,
+    ListroomsfilterComponent,
+    NotfoundComponent,
+  ],
   imports: [
     BrowserModule,
     HttpClientModule,

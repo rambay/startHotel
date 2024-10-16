@@ -62,8 +62,8 @@ public class SecurityConfig {
 
 	}
 
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
         PasswordEncoder encoder = new BCryptPasswordEncoder();
         System.out.println(encoder.encode("luis"));
-    }*/
+    }
 }

@@ -18,9 +18,9 @@
           <th>Descripción</th>
           <th>Estado</th>
           <th>Número de Habitación</th>
-          <th>Precio por Noche</th>
+          <th>Capacidad</th>
+          <th>Precio</th>
           <th>Tipo Habitación</th>
-          <th>Imagen Habitación</th>
           <th>Acciones</th>
         </tr>
       </thead>
@@ -29,9 +29,9 @@
           <td>{{ habitacion.descripcion }}</td>
           <td>{{ habitacion.estado }}</td>
           <td>{{ habitacion.numeroHabitacion }}</td>
+          <td>{{ habitacion.capacidad }}</td>
           <td>S/. {{ habitacion.precioPorNoche }}</td>
           <td>{{ habitacion.tipo.descripcion }}</td>
-          <td>{{ habitacion.imageHabitacion }}</td>
           <td style="display: flex; gap: 8px; justify-content: center">
             <button
               class="btn btn-warning"
@@ -138,6 +138,20 @@
                     formControlName="idTipo"
                   />
                   <label for="Tipo">Tipo de Habitación</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-6">
+                <div class="form-floating mb-3">
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="Capacidad"
+                    formControlName="capacidad"
+                  />
+                  <label for="Capacidad">Capacidad</label>
                 </div>
               </div>
             </div>

@@ -1,7 +1,10 @@
 <div class="container my-4">
   <div class="col-12">
     <h2>Buscar Habitaciones</h2>
-    <form class="d-flex align-items-end justify-content-left gap-4">
+    <form
+      [formGroup]="formFiltrado"
+      class="d-flex align-items-end justify-content-left gap-4"
+    >
       <div class="form-group">
         <label>Capacidad:</label>
         <input
@@ -9,6 +12,7 @@
           type="number"
           name="capacidad"
           placeholder="Cantidad"
+          formControlName="capacidad"
           style="width: 120px"
           min="1"
         />
@@ -20,6 +24,7 @@
           class="form-control"
           type="date"
           name="fechaInicio"
+          formControlName="fechaEntrada"
           style="width: 250px"
         />
       </div>
@@ -30,11 +35,17 @@
           class="form-control"
           type="date"
           name="fechaSalida"
+          formControlName="fechaSalida"
           style="width: 250px"
         />
       </div>
 
-      <button class="btn btn-success" style="width: 120px" type="submit">
+      <button
+        class="btn btn-success"
+        style="width: 120px"
+        type="button"
+        (click)="buscarHabitaciones()"
+      >
         Buscar
       </button>
     </form>

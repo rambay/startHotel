@@ -36,6 +36,7 @@ public class Habitacion {
     private double precioPorNoche;
     @Enumerated(EnumType.STRING)
     private EstadoHabitacion estado;
+    private Integer capacidad;
     private String descripcion;
     public enum EstadoHabitacion {
         disponible, ocupada, mantenimiento
